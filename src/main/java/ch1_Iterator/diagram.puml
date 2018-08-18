@@ -1,0 +1,42 @@
+@startuml
+
+title Iterator Pattern
+
+interface Aggregate {
+    + {abstract} Iterator iterator()
+}
+
+class BookShelf {
+    - Book[] books
+    - int last
+    + Book getBookAt(int index)
+    + void appendBook(Book book)
+    + int getLength()
+    + Iterator iterator()
+}
+
+interface Iterator {
+    + {abstract} boolean hasNext()
+    + {abstract} Object next()
+}
+
+
+class BookShelfIterator {
+    - BookShelf bookShelf
+    - int intdex
+    + boolean hasNext()
+    + Object next()
+}
+
+class Book {
+    - String name
+    + String getName()
+}
+
+Aggregate -- Iterator : Creates >
+Iterator <|.. BookShelfIterator
+Aggregate <|.. BookShelf
+BookShelf --o BookShelfIterator
+BookShelf o-- Book
+
+@enduml
