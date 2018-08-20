@@ -1,0 +1,29 @@
+@startuml
+
+title Adapter Pattern
+
+class Main {
+}
+
+interface Print {
+    + {abstract} printWeak()
+    + {abstract} printStrong()
+}
+
+class Banner {
+    + void showWithParen()
+    + void showWithAster()
+}
+
+class PrintBanner {
+    - Banner banner
+    + void printWeak()
+    + void printStrong()
+}
+
+
+Main -- Print : Uses >
+Print <|.. PrintBanner
+Banner --o PrintBanner
+
+@enduml
